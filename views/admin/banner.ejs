@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include components/head.ejs %>
+  <title>banner</title>
+  <style media="screen">
+    *{
+      /*margin: 100px;*/
+    }
+    .shadow{
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: 0.3;
+      filter: alpha(opacity:30);
+      left: 0;
+      top: 0;
+    }
+    .box{
+      width: 800px;
+      height: 500px;
+      background-color: #fff;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      margin-left: -400px;
+      margin-top: -250px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="h1.-bootstrap-heading">welcome to <strong>banner</strong> management pages</h1>
+  <div class="top">
+    <% include components/left.inc.ejs %>
+  </div>
+  <div class="content_warp">
+    <form  action="?" method="post">
+      title: <input class="form-control1" id="focusedinput"  type="text" name="title" /><br>
+      description: <textarea class="form-control1" name="description" rows="10" ></textarea><br>
+      herf: <input class="form-control1" id="focusedinput"  type="text" name="herf" /><br>
+
+      <input class="btn btn-default" type="submit" value="Submit">
+    </form>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>title</th>
+          <th>description</th>
+          <th>herf</th>
+          <th>opration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i = 0; i<banner.length;i++){ %>
+        <tr>
+          <th><%= banner[i].id %></th>
+          <th><%= banner[i].title %></th>
+          <th><%= banner[i].description %></th>
+          <th><%= banner[i].herf %></th>
+          <th>
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg"> -->
+              <a class="btn btn-default" href="?act=mod&id=<%=banner[i].id%>"  role="button">modify</a>
+              <!-- modify -->
+            <!-- </button> -->
+            <a class="btn btn-default" href="?act=del&id=<%=banner[i].id%>" onclick="return confirm('delete?')" role="button">delete</a>
+          </th>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  <!-- modify -->
+  <%if(typeof mod_data!= 'undefined'){%>
+    <div class="shadow"></div>
+    <div class="box">
+      <form  action="?" method="post">
+        <input type="hidden" name="mod_id" value="<%= mod_data.id %>">
+        title: <input class="form-control1" type="text" name="title" value="<%= mod_data.title %>" /><br>
+        description: <textarea class="form-control1" name="description" rows="10" ><%= mod_data.description %></textarea><br>
+        herf: <input class="form-control1" type="text" name="herf" value="<%= mod_data.herf %>" /><br>
+
+        <input class="btn btn-default"  type="submit" value="save changes">
+        <a href="?">cancel</a>
+      </form>
+    </div>
+<%}%>
+
+
+
+</body>
+</html>
