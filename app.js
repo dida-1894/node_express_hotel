@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 var multer = require('multer');
 
-var index = require('./routes/index');
-// var users = require('./routes/users');
+var index = require('./routes/web/index');
+var test = require('./routes/test/index');
+// var api = require('./routes/API/index');
 var admin = require('./routes/admin/index');
 
 var app = express();
@@ -44,8 +45,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var gallery = require('./routes/admin/gallery')
+
 app.use('/', index);
 app.use('/admin', admin);
+app.use('/test',test);
+// app.get('/test',test);
+// app.use('/test', gallery);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

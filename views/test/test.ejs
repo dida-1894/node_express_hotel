@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="../js/jquery-2.1.4.min.js" charset="utf-8"></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form class="form" action="../admin/gallery" method="post">
+    username <input type="text" id="username" name="username" placeholder="username" /><br>
+    <textarea name="body" id="body" rows="8" cols="80"></textarea><br>
+    <input type="submit" id="btn" value="submit">
+  </form>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.form').on('submit',function(evt){
+    evt.preventDefault();
+    var action = $(this).attr('action');
+    var username = $("#username").val();
+    var body_content = $("#body").val();
+    $.ajax({
+      url:'http://127.0.0.1:4000/admin/gallery',
+      type:"POST",
+      data:{
+        username: username,
+        body_content: body_content
+      },
+      dataType: "json"
+    });
+  });
+});
+
+
+</script>
+</html>

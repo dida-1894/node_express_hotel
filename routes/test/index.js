@@ -9,14 +9,15 @@ var db = mysql.createPool({
   database: 'MyHotel'
 });
 
+router.get('/',function(req, res){
+  res.render('test/test',{});
+});
 
-router.get('/',function(req, res, next){
-  
-  res.render('admin/single',{});
-})
-
-router.post('/',function(req,res,nex){
-
-})
+router.post('/',function(req, res){
+  if(req.xhr){
+    console.log("i got something from tests");
+    console.log(req.body);
+  }
+});
 
 module.exports = router;

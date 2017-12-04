@@ -11,12 +11,17 @@ var db = mysql.createPool({
 
 
 router.get('/',function(req, res, next){
-  
-  res.render('admin/single',{});
-})
-
-router.post('/',function(req,res,nex){
+  res.render('admin/gallery',{});
 
 })
+
+router.post('/',function(req,res,next){
+  if (req.xhr || req.accpet('json,html') == 'json') {
+    alert('i got it from test and i am gallery');
+    console.log(req.body);
+  } else {
+    alert('i got nothing');
+  }
+});
 
 module.exports = router;

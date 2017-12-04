@@ -4,14 +4,16 @@ var router = express.Router();
 
 /* GET home page. */
 // pan duan shi fo denglu
-router.use(function(req, res, next) {
-  if (!req.session['admin_id'] && req.url != '/login') {
-    // console.log(req.url + "!!!!!!");
-    res.redirect('/admin/login');
-  } else {
-    next();
-  }
-});
+// router.use(function(req, res, next) {
+//   if (!req.session['admin_id'] && req.url != '/login') {
+//     // console.log(req.url + "!!!!!!");
+//     res.redirect('/admin/login');
+//   } else {
+//     next();
+//   }
+// });
+
+
 router.get('/', function(req, res, next) {
   res.render('admin/management.ejs', {});
 });
